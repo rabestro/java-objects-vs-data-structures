@@ -5,16 +5,7 @@ import com.epam.engx.cleandesign.workscope.WorkScope;
 
 import java.math.BigDecimal;
 
-public final class Assignment implements FundBalance {
-    private final Worker worker;
-    private final WorkScope workScope;
-    private final BigDecimal bonus;
-
-    public Assignment(Worker worker, WorkScope workScope, BigDecimal bonus) {
-        this.workScope = workScope;
-        this.worker = worker;
-        this.bonus = bonus;
-    }
+public record Assignment(Worker worker, WorkScope workScope, BigDecimal bonus) implements FundBalance {
 
     @Override
     public BigDecimal fundBalance() {
@@ -22,5 +13,4 @@ public final class Assignment implements FundBalance {
                 .subtract(worker.salary(workScope))
                 .subtract(worker.personalBonus(bonus));
     }
-
 }
